@@ -26,3 +26,25 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.panel{
+  border: solid grey 1px;
+  align-content: center;
+  margin: 10px;
+
+}
+.panel-title{
+  margin: 0;
+}
+
+.jumbotron{
+  margin: 5px;
+  padding: 10px;
+}
+/*.article{*/
+  /*width: 60%;*/
+/*}*/
+
+.panel-heading{
+  background-color: lightgrey;
+}
