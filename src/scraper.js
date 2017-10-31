@@ -1,12 +1,23 @@
-const request = require("request");
-const cheerio = require("cheerio");
+import request from "request";
+import cheerio from "cheerio";
 
 
 function scraper(){
     let results = [];
-    request("http://www.sltrib.com/news", function (error, response, html) {
-        console.log(html);
+        console.log('cheerio.load', cheerio.load);
+        console.log('typeof cheerio', typeof cheerio);
+    var options = {
+        url: 'https://www.sltrib.com/news/',
+        headers: {
+            'mode': 'no-cors'
+        }
+    };
+    request(options, function (error, response, html) {
 
+        if (error) {
+            console.log('error loading page to scrape', error);
+            return;
+        }
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         let ch = cheerio.load(html);
         // Now, we grab every h2 within an article tag, and do the following:
@@ -16,17 +27,18 @@ function scraper(){
             let result = {};
 
             // Add the text and href of every link, and save them as properties of the result object
-            result.title = ch(this).children("a").text();
-            result.link = ch(this).children("a").attr("href");
+            result.title = ch(element).children("a").text();
+            result.link = ch(element).children("a").attr("href");
+            console.log("i "+ i + result);
 
             results.push(result);
 
 
         });
     });
-
+    console.log(results);
     return results;
 };
 
 
-export default scraper();
+export default scraper;
