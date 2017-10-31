@@ -1,8 +1,8 @@
 import React from "react";
 import Comment from "./Comment";
-import scraper from "../scraper";
 
-let articles = scraper();
+
+let articles = [];
 
 class Article extends React.Component {
 
